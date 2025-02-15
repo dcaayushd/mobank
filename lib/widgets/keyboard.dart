@@ -19,6 +19,10 @@ class Keyboard extends StatelessWidget {
       ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫'],
     ];
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final keyWidth = (screenWidth - 70) / 10; 
+    final keyHeight = keyWidth * 1.5; 
+
     return Column(
       children: rows.map((row) {
         return Padding(
@@ -32,13 +36,15 @@ class Keyboard extends StatelessWidget {
                 backgroundColor = letterState.color;
               }
 
-              double width = 30;
-              if (key == 'ENTER' || key == '⌫') width = 56;
+              // Calculate dynamic width for special keys
+              double width = keyWidth;
+              if (key == 'ENTER') width = keyWidth * 1.5;
+              if (key == '⌫') width = keyWidth * 1.5;
 
               return Padding(
                 padding: const EdgeInsets.all(3),
                 child: SizedBox(
-                  height: 58,
+                  height: keyHeight,
                   width: width,
                   child: Material(
                     color: backgroundColor,
@@ -48,9 +54,9 @@ class Keyboard extends StatelessWidget {
                       child: Center(
                         child: Text(
                           key,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 13,
+                            fontSize: keyWidth * 0.4, 
                             fontWeight: FontWeight.bold,
                           ),
                         ),
