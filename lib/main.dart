@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
+import 'screens/game_screen.dart';
+
 void main() {
-  runApp(const MainApp());
+  runApp(const WordleApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class WordleApp extends StatelessWidget {
+  const WordleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Wordle',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+        scaffoldBackgroundColor: Colors.black87,
       ),
+      home: const GameScreen(),
     );
   }
 }
